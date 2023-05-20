@@ -6,9 +6,12 @@
       [formControl]="bookSearch"
       name="searchKey"
       type="text"
+      id="searchKey"
       placeholder="Search Books"
       class="tw-border-0 tw-bg-inherit"
+      (keyup.enter)="getSearches('new',1)"
     >
+    <button (click)="getSearches('new',1)">click</button>
   </div>
 </div>
 <div class="tw-flex tw-flex-row tw-m-24-px">
@@ -20,4 +23,6 @@
       </li>
     </ul>
   </section>
+  <!-- <div *ngIf="books.length > 0"><front-end-internship-assignment-search-results [getSearches]="getSearches" [bookSearch]="bookSearch" [books]="books"></front-end-internship-assignment-search-results></div> -->
+  <div class="enclosure"><front-end-internship-assignment-search-results [getSearches]="getSearches" [bookSearch]="bookSearch" [books]="books"></front-end-internship-assignment-search-results></div>
 </div>

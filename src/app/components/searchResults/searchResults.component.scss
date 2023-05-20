@@ -1,0 +1,135 @@
+.heading mat-icon{
+    color: rgb(188, 188, 188);
+    transition: 0.25s;
+}
+
+.prev{
+    mat-icon{
+        transform: rotateZ(180deg);
+    }
+}
+
+.down mat-icon{
+    transform: rotateZ(180deg);
+}
+
+.selected mat-icon{
+    color: black !important;
+}
+
+.prev, .next{
+    color: gray;
+}
+
+.disable{
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.heading{
+    display: flex;
+    width: 100%;
+    background: azure;
+    margin-top: 0px;
+    padding-left: 0;
+    
+    
+    li{
+        display: flex;
+        height: 100%;
+        margin: auto;
+        // width: 100%;
+        align-items: center;
+        padding: 0.5rem;
+        padding-left: 1rem;
+        font-size: 1.2rem;
+        
+        .buttons{
+            margin-left: auto;
+            width: fit-content;
+            mat-icon{
+                font-size: 1rem;
+                width: 1rem;
+                height: 1rem;
+            }
+        }
+    }
+    
+    .vr{
+        width: 0.1rem;
+        height: 3rem;
+        background: rgb(177, 177, 177);
+        margin: auto 0px;
+    }
+}
+
+
+.title{
+    width: 50%;
+}
+
+.author,.year{
+    width: 25%;
+}
+
+.tablebody{
+    display: flex;
+    list-style: none;
+    margin: 0rem;
+    // padding: 0.5rem;
+    padding-left: 0rem;
+    // background: whitesmoke;
+    
+    .vr{
+        width: 0.1rem;
+        height: 3rem;
+        background: rgba(177, 177, 177, 0.73);
+        margin: auto 0px;
+    }
+    
+    li{
+        padding: 0.5rem;
+        padding-left: 1rem;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+.pagination{
+    margin-left: auto;
+    display: flex;
+    width: fit-content;
+
+    .next, .prev{
+
+        display: flex;
+        cursor: pointer;
+        margin: auto 0.5rem;
+
+        .mat-icon{
+            margin: auto;
+        }
+    }
+
+    ul{
+        display: flex;
+        list-style: none;
+        padding-left: 0px;
+
+        .select_page{
+            background: rgb(174, 174, 174);
+        }
+
+        li{
+            // padding: 0.5rem;
+            width: 2rem;
+            height: 2rem;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            background: rgb(221, 221, 221);
+            cursor: pointer;
+        }
+    }
+}
