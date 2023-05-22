@@ -1,33 +1,40 @@
 <div class="search-results">
-<ul class="heading">
-    <li class="title">Title and Sub-title
-    </li>
-    <div class="vr"></div>
-    <li class="author">Author</li>
-    <div class="vr"></div>
-    <li (click)="listButtonClick()" class="year cursor-pointer">First Published Year
-        <div class="buttons">
-            <div class="up {{sort === 'new'?'selected':''}}"><mat-icon>change_history</mat-icon></div>
-            <div class="down {{sort === 'old'?'selected':''}}"><mat-icon>change_history</mat-icon></div>
-        </div>
-    </li>
-</ul>
-<ul class="tablebody" *ngFor="let item of books">
-    <li class="title">{{item.title}}</li>
-    <div class="vr"></div>
-    <li class="author">{{item.author_name}}</li>
-    <div class="vr"></div>
-    <li class="year">{{item.first_publish_year}}</li>
-</ul>
-<div class="pagination">
-    <div class="prev {{page<=1?'disable':''}}" (click)="getSearches?getSearches(sort,page = page - 1):''"><mat-icon>arrow_right_alt</mat-icon></div>
-    <ul>
-        <li class="{{page === 1 ?'select_page':''}}" (click)="pageClick(1)">{{page > 5? page-5+1:1}}</li>
-        <li class="{{page === 2 ?'select_page':''}}" (click)="pageClick(2)">{{page > 5? page-5+2:2}}</li>
-        <li class="{{page === 3 ?'select_page':''}}" (click)="pageClick(3)">{{page > 5? page-5+3:3}}</li>
-        <li class="{{page === 4 ?'select_page':''}}" (click)="pageClick(4)">{{page > 5? page-5+4:4}}</li>
-        <li class="{{page > 4 ?'select_page':''}}" (click)="pageClick(5)">{{page > 5? page-5+5:5}}</li>
+    <ul class="heading">
+        <li class="title">Title and Sub-title
+        </li>
+        <div class="vr"></div>
+        <li class="author">Author</li>
+        <div class="vr"></div>
+        <li (click)="listButtonClick()" class="year tw-cursor-pointer">First Published Year
+            <div class="buttons">
+                <div class="up {{sort === 'new'?'selected':''}}"><mat-icon>change_history</mat-icon></div>
+                <div class="down {{sort === 'old'?'selected':''}}"><mat-icon>change_history</mat-icon></div>
+            </div>
+        </li>
     </ul>
-    <div class="next" (click)="getSearches?getSearches(sort,page = page - 1):''"><mat-icon>arrow_right_alt</mat-icon></div>
-</div>
+    <ul class="tablebody" *ngFor="let item of books">
+        <li class="title"><a href="https://openlibrary.org/{{item.key}}" target="_blank">{{item.title}}</a></li>
+        <div class="vr"></div>
+        <li class="author">{{item.author_name}}</li>
+        <div class="vr"></div>
+        <li class="year">{{item.first_publish_year}}</li>
+    </ul>
+    <div class="pagination">
+        <div class="prev {{page<=1?'disable':''}}" (click)="getSearches?getSearches(sort,page = page - 1):''">
+            <mat-icon>arrow_right_alt</mat-icon></div>
+        <ul>
+            <li class="{{num < 1 ?'disable':''}} {{page === 1 ?'select_page':''}}" (click)="pageClick(1)">{{page > 5?
+                page-5+1:1}}</li>
+            <li class="{{num < 2 ?'disable':''}} {{page === 2 ?'select_page':''}}" (click)="pageClick(2)">{{page > 5?
+                page-5+2:2}}</li>
+            <li class="{{num < 3 ?'disable':''}} {{page === 3 ?'select_page':''}}" (click)="pageClick(3)">{{page > 5?
+                page-5+3:3}}</li>
+            <li class="{{num < 4 ?'disable':''}} {{page === 4 ?'select_page':''}}" (click)="pageClick(4)">{{page > 5?
+                page-5+4:4}}</li>
+            <li class="{{num < 5 ?'disable':''}} {{page > 4 ?'select_page':''}}" (click)="pageClick(5)">{{page > 5?
+                page-5+5:5}}</li>
+        </ul>
+        <div class="next {{page>=num?'disable':''}}" (click)="getSearches?getSearches(sort,page = page + 1):''">
+            <mat-icon>arrow_right_alt</mat-icon></div>
+    </div>
 </div>

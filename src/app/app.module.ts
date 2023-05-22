@@ -9,17 +9,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { searchResultsComponent } from './components/searchResults/searchResult.component';
+import { LottieModule } from 'ngx-lottie';
+import { LoaderComponent } from './components/Loader/Loader.module';
 
+export function playerFactory() {
+  return import('lottie-web');
+}
 
 @NgModule({
-  declarations: [AppComponent, TrendingSubjectsComponent, HomeComponent, searchResultsComponent],
+  declarations: [AppComponent, TrendingSubjectsComponent, HomeComponent, searchResultsComponent, LoaderComponent],
   imports: [
     BrowserModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [],
   bootstrap: [AppComponent],

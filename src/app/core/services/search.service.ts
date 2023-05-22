@@ -8,11 +8,12 @@ import { BookResponse } from 'src/app/core/models/book-response.model';
 })
 
 export class SearchService {
-    constructor(
-      private apiService: ApiService
-    ) {}
-  
-    getSearches(query: string, sort: string, page: number): Observable<BookResponse> {
-      return this.apiService.get(`/search.json?q=${query.toLowerCase().split(' ').join('+')}&page=${page}&sort=${sort}&limit=10`);
-    }
+  constructor(
+    private apiService: ApiService
+  ) { }
+
+getSearches(query: string, sort: string, page: number, searchBy: string): Observable<BookResponse> {
+
+    return this.apiService.get(`/search.json?${searchBy==='any'?'q':searchBy}=${query.toLowerCase().split(' ').join('+')}&page=${page}&sort=${sort}&limit=10`)
   }
+}

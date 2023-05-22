@@ -1,28 +1,37 @@
 <div class="header">
   <div class="tw-text-24-px tw-font-600">Open Books Library</div>
-  <div class="search-button">
-    <mat-icon class="tw-mt-16-px" aria-label="Search Icon">search</mat-icon>
-    <input
-      [formControl]="bookSearch"
-      name="searchKey"
-      type="text"
-      id="searchKey"
-      placeholder="Search Books"
-      class="tw-border-0 tw-bg-inherit"
-      (keyup.enter)="getSearches('new',1)"
-    >
-    <button (click)="getSearches('new',1)">click</button>
+  <div class="search-button tw-ms-auto">
+    <mat-icon class="tw-mt-16-px search_icon {{bookSearch.value?'nonVis':'vis'}}"
+      aria-label="Search Icon">search</mat-icon>
+    <input [formControl]="bookSearch" name="searchKey" title="Press ESC to clear" type="text" id="searchKey"
+      placeholder="Type Shift+S to search" class="tw-border-0 tw-bg-inherit focus:tw-outline-none"
+      (keyup.enter)="getSearches('new',1)" (keyup.escape)="formReset()">
+    <mat-icon class="tw-mt-16-px text-sm tw-cursor-pointer clear {{bookSearch.value?'vis':'nonVis'}}"
+      (click)="formReset()">clear</mat-icon>
+    <select [formControl]="searchBy" (change)="getSearches(sort,page)" name="searchBy" id="searchBy" class="searchBy">
+      <option value="any">Any</option>
+      <option value="title">Title</option>
+      <option value="author">Author</option>
+    </select>
   </div>
 </div>
 <div class="tw-flex tw-flex-row tw-m-24-px">
   <section class="trending-subjects">
     <div class="tw-font-600 tw-text-24-px">Trending Subjects</div>
     <ul class="tw-list-none tw-pl-0">
-      <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px" *ngFor="let subject of trendingSubjects" routerLink="/trending-subject/{{ subject.name }}">
+      <li class="tw-text-16-px tw-cursor-pointer tw-p-12-px" *ngFor="let subject of trendingSubjects"
+        routerLink="/trending-subject/{{ subject.name }}">
         {{ subject.name }}
       </li>
     </ul>
   </section>
-  <!-- <div *ngIf="books.length > 0"><front-end-internship-assignment-search-results [getSearches]="getSearches" [bookSearch]="bookSearch" [books]="books"></front-end-internship-assignment-search-results></div> -->
-  <div class="enclosure"><front-end-internship-assignment-search-results [getSearches]="getSearches" [bookSearch]="bookSearch" [books]="books"></front-end-internship-assignment-search-results></div>
+  <div class="tw-w-full" *ngIf="isLoading">
+    <front-end-internship-assignment-loader></front-end-internship-assignment-loader>
+  </div>
+  <div class="enclosure" *ngIf="books.length > 0"><front-end-internship-assignment-search-results
+      [isLoading]="isLoading" [numFound]="numFound" [getSearches]="getSearches" [bookSearch]="bookSearch"
+      [books]="books" [sort]="sort" [page]="page"
+      [searchBy]="searchBy"></front-end-internship-assignment-search-results></div>
+  <div class="noResults {{isLoading?'tw-opacity-0 tw-':''}}" *ngIf="noResults"><ng-lottie
+      [options]="options"></ng-lottie>No Results found</div>
 </div>

@@ -1,0 +1,38 @@
+.loader {
+    display: flex;
+    position: relative;
+    animation: rotate 1s infinite linear;
+    width: 4rem;
+    height: 4rem;
+    margin: 10rem auto;
+
+    .outer_circle,
+    .inner_circle {
+        position: absolute;
+        transform-origin: center center;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .inner_circle {
+        background: black;
+        left: 0.2rem;
+    }
+
+    .outer_circle {
+        background: white;
+        height: 3.8rem;
+    }
+
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(360deg);
+    }
+}

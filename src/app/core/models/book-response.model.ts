@@ -50,6 +50,7 @@ export interface BookResponse {
   key: string;
   name: string;
   subject_type: string;
+  numFound: number;
   work_count: number;
   works: Book[];
   docs: Book[];
